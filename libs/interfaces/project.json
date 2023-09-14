@@ -1,0 +1,19 @@
+{
+  "root": "libs/interfaces",
+  "sourceRoot": "src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/interfaces/**/*.ts", "libs/interfaces/**/*.js"]
+      }
+    }
+  },
+  "integration": {
+    "library": {
+      "tests": "none",
+      "type": "shared"
+    }
+  }
+}

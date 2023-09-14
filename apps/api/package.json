@@ -1,0 +1,26 @@
+{
+  "name": "@ibana/api",
+  "description": "Ibana Backend",
+  "author": "Backend <backend@webundsoehne.com>",
+  "license": "ISC",
+  "repository": "https://gitlab.tailored-apps.com/",
+  "scripts": {
+    "start": "node ./apps/api/src/main.js",
+    "cli": "NODE_SERVICE=cli node apps/api/src/main.js",
+    "migrations:run": "node ./node_modules/.bin/typeorm migration:run -d ./libs/backend-interfaces/src/database/orm.config.js",
+    "migrations:rollback": "node ./node_modules/.bin/typeorm migration:revert -d ./libs/backend-interfaces/src/database/orm.config.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "implicitDependencies": [
+    "@fastify/static",
+    "class-transformer",
+    "class-validator",
+    "js-yaml",
+    "pg",
+    "reflect-metadata",
+    "rxjs",
+    "typeorm"
+  ]
+}

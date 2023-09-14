@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@ibana/api": ["apps/api/src"],
+      "@ibana/api/*": ["apps/api/src/*"],
+      "@ibana/backend-interfaces": ["libs/backend-interfaces/src"],
+      "@ibana/backend-interfaces/*": ["libs/backend-interfaces/src/*"],
+      "@ibana/interfaces": ["libs/interfaces/src"],
+      "@ibana/interfaces/*": ["libs/interfaces/src/*"]
+    }
+  }
+}

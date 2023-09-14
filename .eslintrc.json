@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "plugins": ["@nrwl/nx"],
+  "extends": ["./.eslintrc-backend.js"],
+  "rules": {
+    "indent": [
+      "warn",
+      2,
+      {
+        "ignoredNodes": [
+          "PropertyDefinition"
+        ]
+      }
+    ],
+    "padding-line-between-statements": "off",
+    "object-curly-newline": "off",
+    "linebreak-style": "off",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/indent": "off"
+  }
+}

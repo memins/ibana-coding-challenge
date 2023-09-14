@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // Enables stricter inference for data properties on `this`
+    "resolveJsonModule": true,
+    "strict": true,
+    "allowJs": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["./src/assets/*"],
+      "@app/*": ["./src/app/*"],
+      "@public/*": ["./src/public/*"],
+      "@ibana/iban-validator/": ["../../libs/iban-validator/src"],
+      "@ibana/interfaces/": ["../../libs/interfaces/src"]
+    },
+    "lib": ["dom", "ESNext.String"]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

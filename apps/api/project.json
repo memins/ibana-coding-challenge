@@ -1,0 +1,147 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@webundsoehne/nx-builders:tsc",
+      "options": {
+        "cwd": "apps/api",
+        "main": "apps/api/src/main.ts",
+        "outputPath": "dist/apps/api",
+        "tsConfig": "apps/api/tsconfig.build.json",
+        "swapPaths": true,
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "libs/backend-interfaces/assets",
+            "output": "libs/backend-interfaces/assets"
+          },
+          {
+            "glob": "*",
+            "input": "apps/api/config",
+            "output": "config"
+          },
+          {
+            "glob": ".dockerignore",
+            "input": "apps/api",
+            "output": "."
+          },
+          {
+            "glob": "Dockerfile",
+            "input": "apps/api",
+            "output": "."
+          },
+          {
+            "glob": "package-lock.json",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@webundsoehne/nx-builders:ts-node-dev",
+      "options": {
+        "cwd": "apps/api",
+        "main": "apps/api/src/main.ts",
+        "tsConfig": "apps/api/tsconfig.json",
+        "environment": {
+          "NODE_SERVICE": "server"
+        }
+      }
+    },
+    "migration": {
+      "executor": "@webundsoehne/nx-builders:run",
+      "options": {
+        "cwd": "apps/api",
+        "nodeOptions": "-r ts-node/register -r tsconfig-paths/register",
+        "node": true,
+        "watch": false,
+        "environment": {}
+      },
+      "configurations": {
+        "run": {
+          "command": "typeorm migration:run -d ../../libs/backend-interfaces/src/database/orm.config.ts"
+        },
+        "mock-run": {
+          "command": "typeorm migration:run -d ../../libs/backend-interfaces/src/database/mock-orm.config.ts"
+        },
+        "create": {
+          "command": "typeorm migration:create ../../libs/backend-interfaces/src/database/migrations/migration"
+        },
+        "generate": {
+          "command": "typeorm migration:generate ../../libs/backend-interfaces/src/database/migrations/migration -d ../../libs/backend-interfaces/src/database/orm.config.ts"
+        },
+        "rollback": {
+          "command": "typeorm migration:revert -d ../../libs/backend-interfaces/src/database/orm.config.ts"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/api/**/*.ts", "apps/api/**/*.js"]
+      }
+    },
+    "test": {
+      "executor": "@webundsoehne/nx-builders:run",
+      "options": {
+        "cwd": "apps/api",
+        "nodeOptions": "-r ts-node/register -r tsconfig-paths/register",
+        "node": true,
+        "watch": false,
+        "command": "jest --config ./jest.config.js --passWithNoTests --detectOpenHandles",
+        "environment": {
+          "DEBUG_PORT": "9229"
+        }
+      },
+      "configurations": {
+        "cov": {
+          "command": "jest --config ./jest.config.js --passWithNoTests --coverage --detectOpenHandles",
+          "nodeOptions": "-r ts-node/register -r tsconfig-paths/register",
+          "node": true,
+          "environment": {}
+        },
+        "dev": {
+          "command": "jest --config ./jest.config.js --watchAll --passWithNoTests --runInBand --detectOpenHandles --verbose",
+          "nodeOptions": "-r ts-node/register -r tsconfig-paths/register --inspect=0.0.0.0:{{ debugPort | default(environment.DEBUG_PORT) }}",
+          "node": true,
+          "interactive": true,
+          "environment": {
+            "DEBUG_PORT": "9229"
+          }
+        },
+        "e2e": {
+          "command": "jest --config ./jest-e2e.config.js --passWithNoTests --runInBand --detectOpenHandles",
+          "nodeOptions": "-r ts-node/register -r tsconfig-paths/register",
+          "node": true,
+          "environment": {}
+        },
+        "e2e-dev": {
+          "command": "jest --config ./jest-e2e.config.js --watchAll --passWithNoTests --runInBand --detectOpenHandles --verbose",
+          "nodeOptions": "-r ts-node/register -r tsconfig-paths/register --inspect=0.0.0.0:{{ debugPort | default(environment.DEBUG_PORT) }}",
+          "node": true,
+          "interactive": true,
+          "environment": {
+            "DEBUG_PORT": "9229"
+          }
+        }
+      }
+    }
+  },
+  "integration": {
+    "nestjs": {
+      "components": ["server"],
+      "effectiveComponents": 1,
+      "server": "restful",
+      "extensions": ["external-backend-interfaces"],
+      "database": "typeorm-postgresql",
+      "dbAdapters": "typeorm",
+      "tests": "none"
+    },
+    "brownie": {
+      "containers": ["nx", "db-postgresql"]
+    }
+  }
+}

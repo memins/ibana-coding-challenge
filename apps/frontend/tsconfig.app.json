@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["vue-i18n", "node"],
+    "composite": true,
+    "lib": ["dom", "ESNext.String"]
+  },
+  "exclude": ["**/*.spec.js", "**/*.spec.jsx", "**/*.spec.ts", "**/*.spec.tsx"],
+  "include": ["../../libs/**/*.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue", "**/*.json"]
+}

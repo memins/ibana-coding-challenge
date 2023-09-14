@@ -1,0 +1,3 @@
+baseUrl: 'http://localhost:42069'
+basePath: /
+apiUrl: http://localhost:3000/api/

@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {},
+  "include": ["src", "../../libs/backend-interfaces"],
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts", "**/*speclocal.ts"]
+}

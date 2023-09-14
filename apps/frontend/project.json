@@ -1,0 +1,26 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/frontend/src",
+  "targets": {
+    "build": {
+      "executor": "nx-vue3-vite:build-app",
+      "options": {
+        "dist": "dist/apps/frontend"
+      }
+    },
+    "serve": {
+      "executor": "nx-vue3-vite:dev-server",
+      "options": {
+        "port": 42069
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/frontend/**/*.{js,jsx,ts,tsx,vue}"]
+      }
+    }
+  },
+  "tags": []
+}

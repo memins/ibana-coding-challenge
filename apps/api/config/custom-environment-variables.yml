@@ -1,0 +1,34 @@
+port: API_PORT
+logLevel: LOG_LEVEL
+
+misc:
+  lockfile: MAINTENANCE_LOCKFILE
+  lastUpdateFile: LAST_UPDATE_FILE
+  maintenanceNotification: MAINTENANCE_MESSAGE
+
+url:
+  basePath: BASE_URL
+  apiPath: API_BASE_PATH
+
+swagger:
+  useHttps:
+    __name: USE_HTTPS
+    __format: json
+  basePath: API_BASE_PATH
+
+frontend:
+  baseUrl: FRONTEND_BASE_URL
+  basePath: FRONTEND_BASE_PATH
+
+database:
+  host: DATABASE_HOST
+  port: DATABASE_PORT
+  database: DATABASE_NAME
+  migrationsRun:
+    __name: DATABASE_RUN_MIGRATIONS
+    __format: json
+  type: DATABASE_TYPE
+  username: DATABASE_USER
+  password: DATABASE_PASSWORD
+  mock:
+    host: CI_DATABASE_HOST
