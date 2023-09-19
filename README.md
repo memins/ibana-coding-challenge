@@ -1,5 +1,8 @@
 # ibana Coding Challenge
 
+[Kapture 2023-09-19 at 16.33.34.webm](https://github.com/memins/ibana-coding-challenge/assets/39412964/c5959f26-f59e-4f63-9dc5-be210fa50a00)
+
+
 Welcome to the ibana coding challenge. This repository should be forked and be used as a starting point to the coding challenge.
 
 Our goal is to hire someone that contributes to building apps in a productive and output driven way. We want to work by the principle of KISS - keep it stupid, simple. We think solutions designed to solve a problem in a direct manner are better than complex structures.
