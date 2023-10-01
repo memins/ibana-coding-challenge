@@ -1,6 +1,6 @@
-
 import type { MiddlewareConsumer, NestModule } from '@nestjs/common'
 import { Module, RequestMethod } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
@@ -39,7 +39,17 @@ export function createServerModule (mock = false): new (mock: boolean) => NestMo
         useClass: RequestProfilerInterceptor
       }
     ],
-    imports: [...Object.values(modules), TypeOrmModule.forRoot(getDatabaseOptions(mock)), InternalModule, MaintenanceModule]
+    imports: [
+      ...Object.values(modules),
+      ConfigModule.forRoot({
+        envFilePath: '.env',
+        isGlobal: true
+      }),
+      TypeOrmModule.forRoot(getDatabaseOptions(mock)),
+      InternalModule,
+      MaintenanceModule,
+      modules.SearchModule
+    ]
   })
   class ServerModule implements NestModule {
     async configure (consumer: MiddlewareConsumer): Promise<void> {

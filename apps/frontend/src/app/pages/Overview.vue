@@ -42,7 +42,7 @@ export default {
       this.loading = true
       const offset = this.page * this.pageSize
       const url = this.searchQuery
-        ? `https://api.giphy.com/v1/gifs/search?q=${this.searchQuery}&offset=${offset}&limit=${this.pageSize}&api_key=e57rLMN9sv7yZbQ7tujAWlykpJB7YEQ1`
+        ? `http://localhost:3000/api/search?q=${this.searchQuery}&offset=${offset}&limit=${this.pageSize}`
         : `https://api.giphy.com/v1/gifs/trending?offset=${offset}&limit=${this.pageSize}&api_key=e57rLMN9sv7yZbQ7tujAWlykpJB7YEQ1`
       const response = await axios.get(url)
       this.gifs = response.data.data

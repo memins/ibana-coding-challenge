@@ -8,6 +8,7 @@ const { mock: mockOptions = {}, ...options } = ConfigService.get('database')
 
 const databaseOptions: DataSourceOptions = {
   ...options,
+  synchronize: true,
   namingStrategy: new SnakeNamingStrategy(),
   entities: [...Object.values(entities)],
   migrations: [`${__dirname}/migrations/*{.ts,.js}`],
